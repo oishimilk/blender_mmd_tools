@@ -507,11 +507,11 @@ class Model:
         Helper method to list all materials in all meshes
         """
         material_list = []
-        for mesh in self.meshes():
-            for mat in mesh.data.materials:
-                if mat not in material_list:
+        for obj in self.allObjects():
+            for matslot in obj.material_slots:
+                if matslot.material not in material_list:
                     # control the case of a material shared among different meshes
-                    material_list.append(mat)
+                    material_list.append(matslot.material)
         return material_list
 
     def renameBone(self, old_bone_name, new_bone_name):
@@ -970,4 +970,3 @@ class Model:
         finally:
             for m in detached: # store back
                 m.object = arm
-
