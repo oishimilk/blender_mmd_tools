@@ -625,6 +625,7 @@ class _FnMaterialCycles(_FnMaterialBI):
             shader.inputs[name].default_value = val
 
     def __update_shader_nodes(self):
+        return
         mat = self.material
         if mat.node_tree is None:
             mat.use_nodes = True
