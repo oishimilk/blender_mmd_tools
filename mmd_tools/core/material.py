@@ -510,7 +510,7 @@ class _FnMaterialCycles(_FnMaterialBI):
             texture = nodes.new('ShaderNodeTexImage')
             texture.label = bpy.path.display_name(node_name)
             texture.name = node_name
-            texture.location = nodes['mmd_shader'].location + Vector((pos[0]*210, pos[1]*220))
+            #texture.location = nodes['mmd_shader'].location + Vector((pos[0]*210, pos[1]*220)) # disabled for manual shader sync.
         texture.image = self._load_image(filepath)
         self.__update_shader_nodes()
         return texture
