@@ -26,8 +26,12 @@ else:
         if obj == depsgraph.objects.get(obj.name):
             return depsgraph
         for view_layer in (l for s in bpy.data.scenes for l in s.view_layers):
-            if obj == view_layer.depsgraph.objects.get(obj.name):
-                return view_layer.depsgraph
+            depsgraph = view_layer.depsgraph
+            if depsgraph is None:
+                # https://docs.blender.org/api/current/bpy.types.Depsgraph.html
+                depsgraph = bpy.context.evaluated_depsgraph_get()
+            if obj == depsgraph.objects.get(obj.name):
+                return depsgraph
         return None
 
 
