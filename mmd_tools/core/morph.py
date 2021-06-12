@@ -502,7 +502,7 @@ class _MorphSlider:
         for morph_name, data, bname, morph_data_path, groups in bone_offset_map.values():
             b = arm.pose.bones[bname]
             b.location = data.location
-            b.rotation_quaternion = data.rotation
+            b.rotation_quaternion = data.rotation.__class__(*data.rotation.to_axis_angle()) # Fix for consistency
             b.is_mmd_shadow_bone = True
             b.mmd_shadow_bone_type = 'BIND'
             pb = armObj.pose.bones[data.bone]
